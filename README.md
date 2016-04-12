@@ -2,13 +2,14 @@
 Ren'Py Event Editor forked from this:[Ren'Py Event Editor 2.1.1 forum post][1]
 
 #Now it:
-- Automatic generate background buttons for all images stored placed in *games/images*
-- Save your events to *games/events*
-- Hosted on Github :D
+- Automatic generate buttons for all images stored placed in *game/images*:
+  - *game/images/bgs* for backgrounds
+  - *game/images/envents* for events
+  - *game/image/characters* for charaters sprites
+- Save your events to *game/events*
+- All list are scrollable
+- Genterate buttons for all spekers added to speakers list
 
-#To do:
-- Automatic generate buttons for all Characters
-- Automatic generate buttons for all sprites
 
 #To install in your game:
 - Unpack it in your project *game* folder 
