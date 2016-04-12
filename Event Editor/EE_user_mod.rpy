@@ -76,10 +76,7 @@ screen speaker_selection:
                 #       <CUSTOM_1>: is the name you want to show on the button
                 #       <CUSTOM_2>: is the name of the tag for the speaking character
                 #
-                textbutton _("None") action SetVariable('speaker_temp',"narr") xminimum 200
-                textbutton _("Center") action SetVariable('speaker_temp',"centered") xminimum 200
-                textbutton _("Player") action SetVariable('speaker_temp', "player")
-                textbutton _("Secretary") action SetVariable('speaker_temp', "secretary")
+                textbutton _("None") action SetVariable('speaker_temp',"") xminimum 200
 
                 for speaker in speakers:
                     $n = speaker.name
