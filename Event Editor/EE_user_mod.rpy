@@ -29,7 +29,7 @@ init:
 #
 # To activate this Menu set the following variable to 1:
 init:
-    $ EV_menu_active = 0
+    $ EV_menu_active = 1
 
 # Here create the lists like you did before
 #
@@ -59,24 +59,36 @@ init:
 screen speaker_selection:
     zorder 1
     tag sc
-    vbox:
-        ymaximum 400
-        box_wrap True
-        yalign 0.3
-        xalign 0.5
+    side "c r":
+        area (5,0,490,455)
+        viewport id "bg_sel":
+            draggable True mousewheel True
+            vbox:
+                ymaximum 400
+                box_wrap True
+                yalign 0.3
+                xalign 0.5
 
-        # CUSTOMIZABLE SECTION ###################################################################
-        # add one textbutton for each possibile character (defined somewhere else)
-        #
-        # textbutton _(<CHANGE_THIS>) action SetVariable('speaker_temp',<CHANGE_THIS>) xminimum 200
-        #       <CUSTOM_1>: is the name you want to show on the button
-        #       <CUSTOM_2>: is the name of the tag for the speaking character
-        #
-        textbutton _("None") action SetVariable('speaker_temp',"narrator") xminimum 200
-        textbutton _("Eileen") action SetVariable('speaker_temp','e') xminimum 200
-        # CUSTOMIZABLE SECTION END ###############################################################
+                # CUSTOMIZABLE SECTION ###################################################################
+                # add one textbutton for each possibile character (defined somewhere else)
+                #
+                # textbutton _(<CHANGE_THIS>) action SetVariable('speaker_temp',<CHANGE_THIS>) xminimum 200
+                #       <CUSTOM_1>: is the name you want to show on the button
+                #       <CUSTOM_2>: is the name of the tag for the speaking character
+                #
+                textbutton _("None") action SetVariable('speaker_temp',"narr") xminimum 200
+                textbutton _("Center") action SetVariable('speaker_temp',"centered") xminimum 200
+                textbutton _("Player") action SetVariable('speaker_temp', "player")
+                textbutton _("Secretary") action SetVariable('speaker_temp', "secretary")
 
-        textbutton _("WRITE NEW") action ui.callsinnewcontext('insert_speaker_manually') xminimum 200
+                for speaker in speakers:
+                    $n = speaker.name
+                    $call_speaker = n.lower().split()[0]
+                    
+                    textbutton _(n) action SetVariable('speaker_temp', call_speaker) xminimum 200
+                # CUSTOMIZABLE SECTION END ###############################################################
+
+                textbutton _("WRITE NEW") action ui.callsinnewcontext('insert_speaker_manually') xminimum 200
     textbutton _("DONE") yalign 0.3 xalign 1.0 action Hide('speaker_selection') xminimum 200
 
 
@@ -107,7 +119,7 @@ screen BG_selection:
                 textbutton _("black") action SetVariable("BG_temp","black") xminimum 150
 
                 #make buttons for all bgs
-                for name in bgslist:
+                for name in bgs:
                     textbutton _(name) action SetVariable("BG_temp", name)  xminimum 150
 
                 # CUSTOMIZABLE SECTION END ###############################################################
@@ -183,34 +195,29 @@ screen character_selection:
             bar value VariableValue('position_temp_char2',1.6,offset=-0.3)
         textbutton ('[position_temp_char%s]'% char_nu_temp) action ui.callsinnewcontext('insert_pos_manually')
 
-    hbox:
-        yalign 0.6
-        xalign 0.2
-        spacing 10
 
-        vbox:
-            ymaximum 350
-            box_wrap True
-            yalign 0.5
-            textbutton _("None") action [SetVariable('char_expressions',[""]),SetVariable("char_onscreen_temp%d" % char_nu_temp,'')] xminimum 200
+    side "c r":
+        area (5,0,490,455)
+        viewport id "char_sel":
+            draggable True mousewheel True
+
+            vbox:
+                yalign 0.6
+                xalign 0.2
+                spacing 10
+
+                textbutton _("None") action [SetVariable('char_expressions',[""]),SetVariable("char_onscreen_temp%d" % char_nu_temp,'')] xminimum 200
 
 
-            # CUSTOMIZABLE SECTION ###################################################################
-            # add one textbutton for each possibile character
-            #
-            # textbutton _(<CUSTOM_1>) action SetVariable('char_expressions',<CUSTOM_2>) xminimum 150
-            #       <CUSTOM_1>: is the name you want to show on the button
-            #       <CUSTOM_2>: is the name of the list with the character images that you have created during the STEP 1 (above)
-            #
-            textbutton _("Eileen") action SetVariable('char_expressions',eileen_expressions) xminimum 150
-            # CUSTOMIZABLE SECTION END ###############################################################
-
-        vbox:
-            yalign 0.5
-            ymaximum 350
-            box_wrap True
-            for ii in range(len(char_expressions)):
-                textbutton _("__%d__" % (ii+1)) action SetVariable("char_onscreen_temp%d" % char_nu_temp,char_expressions[ii]) xminimum 150
+                # CUSTOMIZABLE SECTION ###################################################################
+                # add one textbutton for each possibile character
+                #
+                # textbutton _(<CUSTOM_1>) action SetVariable('char_expressions',<CUSTOM_2>) xminimum 150
+                #       <CUSTOM_1>: is the name you want to show on the button
+                #       <CUSTOM_2>: is the name of the list with the character images that you have created during the STEP 1 (above)
+                #
+                for name in characters:
+                    textbutton _("[name]") action SetVariable("char_onscreen_temp%d" % char_nu_temp, name) xminimum 150
 
 
 
@@ -222,25 +229,30 @@ screen character_selection:
 
 screen EV_bg_selection:
     tag sc
+    zorder 1
+    side "c r":
+        area (5,0,490,455)
+        viewport id "ev_bg_sel":
+            draggable True mousewheel True
+
+            hbox:
+                yalign 0.5
+                vbox:
+                    yalign 0.5
+
+
+                    # CUSTOMIZABLE SECTION ###################################################################
+                    # add one textbutton for each possibile BG (defined somewhere else)
+                    #
+                    # textbutton _(<CUSTOM_1>) action SetVariable("BG_temp",<CUSTOM_2>) xminimum 150
+                    #       <CUSTOM_1>: is the name you want to show on the button
+                    #       <CUSTOM_2>: is the name of the image you want to show
+                    #
+                    #make buttons for all envents bgs
+                    for name in ev_bgs:
+                        textbutton _(name) action SetVariable("BG_temp", name)  xminimum 150
+
+                    # CUSTOMIZABLE SECTION END ###############################################################
+
     textbutton _("DONE") yalign 0.3 xalign 1.0 action Hide('EV_bg_selection')
-    hbox:
-        yalign 0.5
-        vbox:
-            yalign 0.5
-
-
-            # CUSTOMIZABLE SECTION ###################################################################
-            # add one textbutton for each group of fullscreen images
-            #
-            # textbutton _(<CUSTOM_1>) action SetVariable('EV_temp',<CUSTOM_2>) xminimum 200
-            #       <CUSTOM_1>: is the name you want to show on the button
-            #       <CUSTOM_2>: is the name of the list with the fulscreen images that you have created during the STEP 1 bis (above)
-            #
-            textbutton _("EV group 1") action SetVariable("EV_temp",EV_example_group) xminimum 200
-            # CUSTOMIZABLE SECTION END ###############################################################
-
-        vbox:
-            ymaximum 400
-            box_wrap True
-            for ii in range(len(EV_temp)):
-                textbutton _("__%d__" % (ii+1)) action SetVariable("BG_temp","%s" % EV_temp[ii]) xminimum 200
+    vbar value YScrollValue("ev_bg_sel")

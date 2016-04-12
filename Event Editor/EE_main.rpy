@@ -42,8 +42,9 @@ screen new_tutorial_menu:
 
 screen event_window:
     imagemap:
-        ground BG_temp yanchor -config.screen_height
-        xalign 0.5
+        ground BG_temp
+        #yanchor -config.screen_height
+        #xalign 0.5
 
 
     if char_onscreen_temp0!="":
@@ -87,6 +88,7 @@ screen event_window:
 screen comments_screen:
     imagemap:
         ground "#2E64FE"
+
     vbox:
         yfill True
         viewport:
@@ -277,7 +279,7 @@ label event_editor:
 
 label exporting_project:
     python:
-        target = renpy.loader.transfn("event/")
+        target = renpy.loader.transfn("events/")
         target = open(target + project_name + ".rpy",'w+')
         ind=''
         n_ind=1

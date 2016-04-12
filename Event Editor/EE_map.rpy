@@ -105,6 +105,7 @@ screen sequence_map:
 screen project_main_menu:
     imagemap:
         ground "#2E64FE"
+
     textbutton _("BACK") action Return() xminimum 200 xalign 1.0
     vbox:
         text _("Event name: [project_name]") size 40
@@ -168,8 +169,10 @@ label add_branch:
 screen minievent_menu_branch:
     zorder 1
     tag sc
+
     imagemap:
         ground "#2E64FE"
+
     textbutton _("CLOSE") action [Hide("minievent_menu_branch"),Jump('EE_map_repeat')] xminimum 200 xalign 1.0
     vbox:
         text _("Branch options:") size 40

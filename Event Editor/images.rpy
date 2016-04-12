@@ -1,30 +1,25 @@
-﻿###############################################################
-#Example for the pictures and character definition/declaration:
-###############################################################
 
-##The images declaration doesn't need any modification:
+init -100:
+    define bgs = []
+    define ev_bgs = []
+    define characters = []
+    define speakers = []
 
-define bgslist = []
-init python:
+    python:
 
-    for file in renpy.list_files():
-        if file.startswith('images/bg'):
-            if file.endswith('.png'):
-                name = file.replace('images/bg','bg').replace('/', ' ').replace('.png','')
-                renpy.image(name, Image(file, yanchor = config.screen_height))
-                bgslist.append(name)
+        def addImgs(src, prefix, li):
+            if file.startswith(src):
+                if file.endswith('.png'):
+                    name = file.replace(src, prefix)
+                    name = name.replace('/', ' ')
+                    name = name.replace('.png','')
+                    renpy.image(name, Image(file))
+                    li.append(name)
 
-        if file.startswith('images/event'):
-            if file.endswith('.png'):
-                name = file.replace('images/event','event').replace('/', ' ').replace('.png','')
-                renpy.image(name, Image(file, yanchor = config.screen_height))
-                bgslist.append(name)
-
-        if file.startswith('images/people'):
-            if file.endswith('.png'):
-                name = file.replace('images/people','').replace('/', ' ').replace('.png','')
-                renpy.image(name, Image(file, yanchor = config.screen_height))
-                bgslist.append(name)
+        for file in renpy.list_files():
+            addImgs('images/bgs', 'bg', bgs)
+            addImgs('images/events', 'event', ev_bgs)
+            addImgs('images/characters', '', characters)
 
 
-image black = "#000"
+    image black = "#000"
