@@ -191,7 +191,7 @@ screen main_menu():
 
         has vbox
 
-        textbutton _("Test Game") action Start()
+        textbutton _("New Game") action Start()
         textbutton _("Add New Event") action Start("EE_start")
         textbutton _("Load Game") action ShowMenu("load")
         textbutton _("Preferences") action ShowMenu("preferences")

@@ -17,11 +17,11 @@ init -1 python hide:
     ## This controls the title of the window, when Ren'Py is
     ## running in a window.
 
-    config.window_title = u"RenStudio"
+    config.window_title = u"Ren'Py Game"
 
     # These control the name and version of the game, that are reported
     # with tracebacks and other debugging logs.
-    config.name = "RenStudio"
+    config.name = "Ren'Py Game"
     config.version = "0.0"
 
     #########################################
@@ -192,7 +192,7 @@ init -1 python hide:
     ## - A file name relative to the base directory, which is opened in a
     ##   web browser.
     ## - None, to disable help.
-    config.help = "https://github.com/jeremi360/RenStudio"
+    config.help = "https://github.com/jeremi360/Ren-Py-Event-Editor"
 
 
     #########################################
@@ -254,7 +254,7 @@ init -1 python hide:
     ## stored. (It needs to be set early, before any other init code
     ## is run, so the persistent information can be found by the init code.)
 python early:
-    config.save_directory = "RenStudio-1464868926"
+    config.save_directory = "Ren'Py Game-1464868926"
 
 init -1 python hide:
     #########################################
