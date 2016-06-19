@@ -81,7 +81,7 @@ screen speaker_selection:
                 for speaker in speakers:
                     $n = speaker.name
                     $call_speaker = n.lower().split()[0]
-                    
+
                     textbutton _(n) action SetVariable('speaker_temp', call_speaker) xminimum 200
                 # CUSTOMIZABLE SECTION END ###############################################################
 
@@ -114,6 +114,9 @@ screen BG_selection:
                 #       <CUSTOM_2>: is the name of the image you want to show
 
                 textbutton _("black") action SetVariable("BG_temp","black") xminimum 150
+
+                for name in tango:
+                    textbutton _(name) action SetVariable("BG_temp", name)  xminimum 150
 
                 #make buttons for all bgs
                 for name in bgs:
@@ -203,7 +206,8 @@ screen character_selection:
                 xalign 0.2
                 spacing 10
 
-                textbutton _("None") action [SetVariable('char_expressions',[""]),SetVariable("char_onscreen_temp%d" % char_nu_temp,'')] xminimum 200
+                textbutton _("None") action [SetVariable('char_expressions',[""]),
+                                            SetVariable("char_onscreen_temp%d" % char_nu_temp,'')] xminimum 200
 
 
                 # CUSTOMIZABLE SECTION ###################################################################
@@ -214,7 +218,8 @@ screen character_selection:
                 #       <CUSTOM_2>: is the name of the list with the character images that you have created during the STEP 1 (above)
                 #
                 for name in characters:
-                    textbutton _("[name]") action SetVariable("char_onscreen_temp%d" % char_nu_temp, name) xminimum 150
+                    textbutton _(name) action [SetVariable('char_expressions', name),
+                                                SetVariable("char_onscreen_temp%d" % char_nu_temp, name)] xminimum 150
 
 
 

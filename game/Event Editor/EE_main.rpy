@@ -307,10 +307,11 @@ init python:
                     else:
                         target.write(ind+"show "+minievent_temp.char_onscreen[xx][yy]+" at Position(xanchor=0.5,xpos=%f) \n" % minievent_temp.char_position[xx][yy])
             if minievent_temp.speaker[xx]!='narrator':
-                target.write(minievent_temp.speaker[xx]+" ")
+                #target.write(minievent_temp.speaker[xx]+" ")
+                target.write(minievent_temp.speaker[xx])
             target.write(ind+"\""+minievent_temp.page_text[xx]+"\"")
             if minievent_temp.comments[xx]!='':
-                target.write("        # "+minievent_temp.comments[xx])
+                target.write(" # "+minievent_temp.comments[xx])
             target.write("\n")    #not sure +ind
         return
 
@@ -340,13 +341,8 @@ init python:
         return ind
 
 
-
-
-
-
-
 label EE_tutorial:
-    scene black
+    scene bg start code
     'In the Event Editor each "page" correspond to "one click" in game.'
     'VERY IMPORTANT: The editor does not notice that you have modified a page until you "change page". So when you are going to EXPORT or SAVE the event, you should change page before doing so, this way you can be sure that your modifications are remembered.'
     'TEXT' 'When you start the Event Editor you will have the possibility to write the text that you want to show in this window you are reading now. You can input the text in this very same window. It can be both dialogue or narration text. There are just a a couple thing you have to remember.'
