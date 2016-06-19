@@ -3,6 +3,7 @@ init -100:
     define bgs = []
     define ev_bgs = []
     define characters = []
+    image black = "#000"
 
     python:
 
@@ -24,10 +25,15 @@ init -100:
                         renpy.image(name, Image(file))
                         li.append(name)
 
-        #for file in renpy.list_files():
-        addImgs('images/bgs', 'bg', bgs)
-        addImgs('images/events', 'event', ev_bgs)
-        addImgs('images/characters', '', characters)
+        def addBGs(src, prefix = 'bg'):
+            addImgs(src, prefix, bgs)
 
+        def addEVs(src, prefix = 'event'):
+            addImgs(src, prefix, ev_bgs)
 
-    image black = "#000"
+        def addChs(, prefix = ''):
+            addImgs(src, prefix, characters)
+
+        addBGs('images/bgs')
+        addEVs('images/events')
+        addChs('images/characters')

@@ -62,10 +62,10 @@ screen event_window:
     vbox:
         hbox:
             textbutton _("Speaker") action Show('speaker_selection') xminimum 120
+            textbutton _("Base BG") action Show('BG_base_selection')  xminimum 120
             textbutton _("BG") action Show('BG_selection') xminimum 120
+            textbutton _("EV") action Show ('EV_bg_selection') xminimum 120
             textbutton _("Characters") action Show ('character_selection') xminimum 120
-            if EV_menu_active == 1:
-                textbutton _("EV") action Show ('EV_bg_selection') xminimum 120
             textbutton _("Comments") action ShowMenu ('comments_screen') xminimum 120
         hbox:
             text _("page [page]/[minievent_temp.totalpages]") min_width 120  text_align 0.5
@@ -87,7 +87,7 @@ screen event_window:
 
 screen comments_screen:
     imagemap:
-        ground "#2E64FE"
+        ground bg start code
 
     vbox:
         yfill True
@@ -307,11 +307,10 @@ init python:
                     else:
                         target.write(ind+"show "+minievent_temp.char_onscreen[xx][yy]+" at Position(xanchor=0.5,xpos=%f) \n" % minievent_temp.char_position[xx][yy])
             if minievent_temp.speaker[xx]!='narrator':
-                #target.write(minievent_temp.speaker[xx]+" ")
-                target.write(minievent_temp.speaker[xx])
-            target.write(ind+"\""+minievent_temp.page_text[xx]+"\"")
+                target.write(ind+minievent_temp.speaker[xx])
+            target.write(" \""+minievent_temp.page_text[xx]+"\"\n")
             if minievent_temp.comments[xx]!='':
-                target.write(" # "+minievent_temp.comments[xx])
+                target.write(ind+" # "+minievent_temp.comments[xx])
             target.write("\n")    #not sure +ind
         return
 

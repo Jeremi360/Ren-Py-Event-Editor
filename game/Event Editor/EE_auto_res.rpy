@@ -1,60 +1,15 @@
-﻿## This is the code that you need to change to synchronize the Event Editor with your game.
-
-# Before proceeding remember that all characters and images that you want to use must be declared somewhere;
-# for example some images and bg have already been defined in the file "EE_example_def.rpy"
-
-###################################################################################################
-###################################################################################################
-#
-#       STEP 1: Characters images
-#
-###################################################################################################
-###################################################################################################
-#
-# For each character you have to create a list with the names of all the pictures of that character.
-# For example in this case there are the three picture already declared in the "EE_example_def.rpy"
-#
-# Delete the example list and write your owns.
-
-init:
-    $ eileen_expressions = ["eileen happy","eileen vhappy","eileen concerned"]
-
-
-#################################
-##      STEP 1 bis: Event images
-#################################
-# The Event images Menu is optional; it gives you the possibility to create one or more lists of fullscreen images that are not "backgrounds".
-# This may be useful if you have many fullscreen images and you want to group them.
-#
-#
-# To activate this Menu set the following variable to 1:
-init:
-    $ EV_menu_active = 1
-
-# Here create the lists like you did before
-#
-init:
-    $ EV_example_group = ['black']
-
-
-
-###################################################################################################
-###################################################################################################
-#
-#       STEP 2: SCREENS
-#
-###################################################################################################
-###################################################################################################
-#
-# The seguent menus are opened during the Event Editor session.
-#
-# You need to manually add the textbutton for every option you want.
-
-###########################
-##      Speaker
-###########################
-# In this menu you can choose who is talking (the name that will be shown above the speech text).
-# NOTE: remember that the "color" option is mandatory when defining a character (see "EE_example_def.rpy"), otherwise the Event Editor will crash.
+﻿## This is the code automatic synchronize the Event Editor with your game.
+## Just put images in right folders:
+##    - backgrounds to 'game/images/bgs'\n
+##    - character sprites to 'game/images/charaters'\n
+##    - events images in 'game/images/events'"
+##
+## And add every character to speakers list:
+## $ speakers.append(mycharacter)
+## To add custom image folder write in init -30 python:
+## addBGs('my_custom_bgs', 'my_bg_prefix') #you don't have to write prefix
+## addEVs('my_custom_ev', 'my_ev_prefix')
+## addChs('my_custom_ch')
 
 screen speaker_selection:
     zorder 1
@@ -69,13 +24,6 @@ screen speaker_selection:
                 yalign 0.3
                 xalign 0.5
 
-                # CUSTOMIZABLE SECTION ###################################################################
-                # add one textbutton for each possibile character (defined somewhere else)
-                #
-                # textbutton _(<CHANGE_THIS>) action SetVariable('speaker_temp',<CHANGE_THIS>) xminimum 200
-                #       <CUSTOM_1>: is the name you want to show on the button
-                #       <CUSTOM_2>: is the name of the tag for the speaking character
-                #
                 textbutton _("None") action SetVariable('speaker_temp',"") xminimum 200
 
                 for speaker in speakers:
@@ -83,17 +31,9 @@ screen speaker_selection:
                     $call_speaker = n.lower().split()[0]
 
                     textbutton _(n) action SetVariable('speaker_temp', call_speaker) xminimum 200
-                # CUSTOMIZABLE SECTION END ###############################################################
 
                 textbutton _("WRITE NEW") action ui.callsinnewcontext('insert_speaker_manually') xminimum 200
     textbutton _("DONE") yalign 0.3 xalign 1.0 action Hide('speaker_selection') xminimum 200
-
-
-###########################
-##      Background
-###########################
-# In this menu you can choose the background image.
-
 
 screen BG_selection:
     zorder 1
@@ -106,33 +46,11 @@ screen BG_selection:
                 yalign 300
                 xalign 400
 
-                # CUSTOMIZABLE SECTION ###################################################################
-                # add one textbutton for each possibile BG (defined somewhere else)
-                #
-                # textbutton _(<CUSTOM_1>) action SetVariable("BG_temp",<CUSTOM_2>) xminimum 150
-                #       <CUSTOM_1>: is the name you want to show on the button
-                #       <CUSTOM_2>: is the name of the image you want to show
-
-                textbutton _("black") action SetVariable("BG_temp","black") xminimum 150
-
-                for name in tango:
-                    textbutton _(name) action SetVariable("BG_temp", name)  xminimum 150
-
-                #make buttons for all bgs
                 for name in bgs:
                     textbutton _(name) action SetVariable("BG_temp", name)  xminimum 150
 
-                # CUSTOMIZABLE SECTION END ###############################################################
-
     textbutton _("DONE") yalign 0.3 xalign 1.0 action Hide('BG_selection') xminimum 200
     vbar value YScrollValue("bg_sel")
-
-
-
-###########################
-##      Background
-###########################
-# In this menu you can choose character shown on the screen.
 
 screen character_selection:
     zorder 1
@@ -209,25 +127,10 @@ screen character_selection:
                 textbutton _("None") action [SetVariable('char_expressions',[""]),
                                             SetVariable("char_onscreen_temp%d" % char_nu_temp,'')] xminimum 200
 
-
-                # CUSTOMIZABLE SECTION ###################################################################
-                # add one textbutton for each possibile character
-                #
-                # textbutton _(<CUSTOM_1>) action SetVariable('char_expressions',<CUSTOM_2>) xminimum 150
-                #       <CUSTOM_1>: is the name you want to show on the button
-                #       <CUSTOM_2>: is the name of the list with the character images that you have created during the STEP 1 (above)
-                #
                 for name in characters:
                     textbutton _(name) action [SetVariable('char_expressions', name),
                                                 SetVariable("char_onscreen_temp%d" % char_nu_temp, name)] xminimum 150
 
-
-
-###########################
-##      Event Images
-###########################
-# In this optional menu you can choose a fullscreen image to replace the background.
-# NOTE: remember that this manu is inactive until you modify the variable EV_menu_active (above: STEP 1 bis)
 
 screen EV_bg_selection:
     tag sc
@@ -242,19 +145,27 @@ screen EV_bg_selection:
                 vbox:
                     yalign 0.5
 
-
-                    # CUSTOMIZABLE SECTION ###################################################################
-                    # add one textbutton for each possibile BG (defined somewhere else)
-                    #
-                    # textbutton _(<CUSTOM_1>) action SetVariable("BG_temp",<CUSTOM_2>) xminimum 150
-                    #       <CUSTOM_1>: is the name you want to show on the button
-                    #       <CUSTOM_2>: is the name of the image you want to show
-                    #
-                    #make buttons for all envents bgs
                     for name in ev_bgs:
                         textbutton _(name) action SetVariable("BG_temp", name)  xminimum 150
 
-                    # CUSTOMIZABLE SECTION END ###############################################################
-
     textbutton _("DONE") yalign 0.3 xalign 1.0 action Hide('EV_bg_selection')
     vbar value YScrollValue("ev_bg_sel")
+
+    screen BG_base_selection:
+        zorder 1
+        tag sc
+        side "c r":
+            area (5,0,490,455)
+            viewport id "bg_base_sel":
+                draggable True mousewheel True
+                vbox:
+                    yalign 300
+                    xalign 400
+
+                    textbutton _("black") action SetVariable("BG_temp", "black") xminimum 150
+
+                    for name in tango:
+                        textbutton _(name) action SetVariable("BG_temp", name)  xminimum 150
+
+                textbutton _("DONE") yalign 0.3 xalign 1.0 action Hide('BG_base_selection') xminimum 200
+                vbar value YScrollValue("bg_base_sel")

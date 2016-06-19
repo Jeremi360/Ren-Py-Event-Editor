@@ -95,7 +95,8 @@ label EE_map:
 
 screen sequence_map:
     imagemap:
-        ground "#F6CEF5"
+        ground bg start code
+
     viewport:
         draggable True
         mousewheel True
@@ -104,7 +105,7 @@ screen sequence_map:
 
 screen project_main_menu:
     imagemap:
-        ground "#2E64FE"
+        ground bg start code
 
     textbutton _("BACK") action Return() xminimum 200 xalign 1.0
     vbox:
@@ -171,7 +172,7 @@ screen minievent_menu_branch:
     tag sc
 
     imagemap:
-        ground "#2E64FE"
+        ground bg start code
 
     textbutton _("CLOSE") action [Hide("minievent_menu_branch"),Jump('EE_map_repeat')] xminimum 200 xalign 1.0
     vbox:
@@ -201,15 +202,12 @@ screen minievent_menu_branch:
                 null width 30
                 text minievent_temp.branching_text[ii]
 
-
 label add_choice:
     $ name_temp=minievent_temp.name+" choice"+str(len(minievent_temp.branch)+1)
     $ minievent_list[name_temp]=minievent(name_temp,minievent_temp.name,False)
     $ minievent_temp.branch.append(name_temp)
     $ minievent_temp.branching_text.append("choice text")
     jump EE_map_repeat
-
-
 
 label add_end_branch:
     $ minievent_list[minievent_temp.name+" BRANCH \n common END"]=minievent(minievent_temp.name+" BRANCH \n common END",minievent_temp.name,False)
@@ -264,8 +262,6 @@ label delete_choice:
                         minievent_list[minievent_temp.name+" choice"+str(ii+1)].name=minievent_temp.name+" choice"+str(ii+1)
                         minievent_temp.branch[ii]= minievent_temp.name+" choice"+str(ii+1)
     jump EE_map_repeat
-
-
 
 
 label change_choice_text:
