@@ -31,7 +31,7 @@ init -100:
         def addEVs(src, prefix = 'event'):
             addImgs(src, prefix, ev_bgs)
 
-        def addChs(, prefix = ''):
+        def addChs(src, prefix = ''):
             addImgs(src, prefix, characters)
 
         addBGs('images/bgs')
