@@ -151,21 +151,21 @@ screen EV_bg_selection:
     textbutton _("DONE") yalign 0.3 xalign 1.0 action Hide('EV_bg_selection')
     vbar value YScrollValue("ev_bg_sel")
 
-    screen BG_base_selection:
-        zorder 1
-        tag sc
-        side "c r":
-            area (5,0,490,455)
-            viewport id "bg_base_sel":
-                draggable True mousewheel True
-                vbox:
-                    yalign 300
-                    xalign 400
+screen BG_base_selection:
+    zorder 1
+    tag sc
+    side "c r":
+        area (5,0,490,455)
+        viewport id "bg_base_sel":
+            draggable True mousewheel True
+            vbox:
+                yalign 300
+                xalign 400
 
-                    textbutton _("black") action SetVariable("BG_temp", "black") xminimum 150
+                textbutton _("black") action SetVariable("BG_temp", "black") xminimum 150
 
-                    for name in tango:
-                        textbutton _(name) action SetVariable("BG_temp", name)  xminimum 150
+                for name in tango:
+                    textbutton _(name) action SetVariable("BG_temp", name)  xminimum 150
 
-                textbutton _("DONE") yalign 0.3 xalign 1.0 action Hide('BG_base_selection') xminimum 200
-                vbar value YScrollValue("bg_base_sel")
+            textbutton _("DONE") yalign 0.3 xalign 1.0 action Hide('BG_base_selection') xminimum 200
+            vbar value YScrollValue("bg_base_sel")

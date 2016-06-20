@@ -95,7 +95,7 @@ label EE_map:
 
 screen sequence_map:
     imagemap:
-        ground images/bgs/start/code.png
+        ground "images/bgs/start/editor.png"
 
     viewport:
         draggable True
@@ -105,7 +105,7 @@ screen sequence_map:
 
 screen project_main_menu:
     imagemap:
-        ground images/bgs/start/code.png
+        ground "images/bgs/start/editor.png"
 
     textbutton _("BACK") action Return() xminimum 200 xalign 1.0
     vbox:
@@ -172,7 +172,7 @@ screen minievent_menu_branch:
     tag sc
 
     imagemap:
-        ground images/bgs/start/code.png
+        ground "images/bgs/start/editor.png"
 
     textbutton _("CLOSE") action [Hide("minievent_menu_branch"),Jump('EE_map_repeat')] xminimum 200 xalign 1.0
     vbox:

@@ -87,7 +87,7 @@ screen event_window:
 
 screen comments_screen:
     imagemap:
-        ground "images/bgs/start/code.png"
+        ground "images/bgs/start/editor.png"
 
     vbox:
         yfill True
@@ -341,7 +341,7 @@ init python:
 
 
 label EE_tutorial:
-    scene images/bgs/start/code.png
+    scene bg start code
     'In the Event Editor each "page" correspond to "one click" in game.'
     'VERY IMPORTANT: The editor does not notice that you have modified a page until you "change page". So when you are going to EXPORT or SAVE the event, you should change page before doing so, this way you can be sure that your modifications are remembered.'
     'TEXT' 'When you start the Event Editor you will have the possibility to write the text that you want to show in this window you are reading now. You can input the text in this very same window. It can be both dialogue or narration text. There are just a a couple thing you have to remember.'
