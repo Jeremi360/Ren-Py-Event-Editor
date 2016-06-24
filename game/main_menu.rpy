@@ -23,6 +23,7 @@ screen main_menu():
 
         textbutton _("New Game") action Start()
         textbutton _("Add New Event") action Start("EE_start")
+        textbutton _("Import ...") action Start("import_imgs")
         textbutton _("Load Game") action ShowMenu("load")
         textbutton _("Preferences") action ShowMenu("preferences")
         textbutton _("Help") action Help()
@@ -33,3 +34,18 @@ init -2:
     # Make all the main menu buttons be the same size.
     style mm_button:
         size_group "mm"
+
+    python:
+        import tkFileDialog as fd
+        imgs = [("Ren'Py supported images types", "*.png *.jpg *.jpeg")]
+        sprites = []
+
+
+label import_imgs:
+    scene bg start imgs
+    menu:
+        "Import Scene Backgrounds":
+            python:
+                fd.askopenfilename(filetypes=
+
+                                    )
