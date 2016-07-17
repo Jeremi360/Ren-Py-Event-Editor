@@ -27,4 +27,4 @@ Ren'Py Event Editor forked from this: [Ren'Py Event Editor 2.1.1 forum post][1]
 - Save your events to *game/events*
 - All list are scrollable
 
-[1]:http://lemmasoft.renai.us/forums/viewtopic.php?f=51&t=24108#p374045
+[1]:[http://lemmasoft.renai.us/forums/viewtopic.php?f=51&t=24108#p374045]
