@@ -2,7 +2,10 @@
 
 Ren'Py Event Editor forked from this: [Ren'Py Event Editor forum topic][http://lemmasoft.renai.us/forums/viewtopic.php?f=51&t=24108#p374045]
 
-#Now it:
+## Features:
+- You can test your events from menu
+- All generated events have *EEout_* prefix
+
 - Genterate buttons for all spekers added to speakers list:
   ```
   $ speakers.append(mycharacter)
@@ -14,6 +17,9 @@ Ren'Py Event Editor forked from this: [Ren'Py Event Editor forum topic][http://l
     addEVs('my_custom_ev', 'my_ev_prefix')
     addChs('my_custom_ch')
     ```
+## Changes:
+- Add imgs from Ren'Py Tutorial
+- Remove buggy basic speakers
 - Remove old comments
 - Comments make in EE are in next line
 - Fix indentation or speakers lines

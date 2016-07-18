@@ -3,8 +3,7 @@ init -90 python:
     speakers = []
 
     base_speakers = {"boy":"#729fcf", "girl":"#e65fc8", "men":"#3465a4",
-                    "women":"#ad7fa8", "old_men":"#555753",
-                    "old_women":"#d3d7cf", "devloper":"#cc0000", "debug":"#ef2920"}
+                    "women":"#ad7fa8", "devloper":"#cc0000", "debug":"#ef2920"}
 
     for sp in base_speakers.items():
         var_name = sp[0]

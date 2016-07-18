@@ -1,4 +1,4 @@
-label start:
+label EEout_start:
     scene bg start code
     devloper "Hi! Welcome in Ren'Py Event Editor."
     scene bg start imgs

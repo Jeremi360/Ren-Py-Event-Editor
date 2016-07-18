@@ -7,9 +7,9 @@
 ## And add every character to speakers list:
 ## $ speakers.append(mycharacter)
 ## To add custom image folder write in init -30 python:
-## addBGs('my_custom_bgs', 'my_bg_prefix') #you don't have to write prefix
-## addEVs('my_custom_ev', 'my_ev_prefix')
-## addChs('my_custom_ch')
+## addBGs('my_custom_bgs_dir', 'my_bg_prefix') #you don't have to write prefix
+## addEVs('my_custom_evs_dir', 'my_ev_prefix')
+## addChs('my_custom_chs_dir')
 
 screen speaker_selection:
     zorder 1

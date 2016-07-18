@@ -1,4 +1,4 @@
-﻿#######VERSION: 2.1
+﻿#######VERSION: 2.4
 #
 #DON'T TOUCH:
 #Code needed to capture the input text everytime the page changes.
@@ -131,13 +131,11 @@ screen comments_screen:
 
 
 label EE_start:
-    "This is an Event Editor, have fun!"
+    devloper "This is an Event Editor, have fun!"
 
     call screen new_tutorial_menu
 
     return
-
-
 
 #
 #
@@ -145,11 +143,11 @@ label EE_start:
 #
 
 label new_project:
-    $ project_name=renpy.input("Write a name for the event","test")
-    if project_name=="":
-        "You must write a name for the event"
+    $ project_name = "EEout_" + renpy.input("Write a name for the event","test")
+    if project_name == "EEout_":
+        devloper "You must write a name for the event"
         jump new_project
-    elif project_kind=="map":
+    elif project_kind == "map":
         jump EE_map
     else:
         $ minievent_list[project_name]=minievent(project_name,project_name,False)

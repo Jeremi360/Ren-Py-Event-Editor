@@ -21,8 +21,9 @@ screen main_menu():
 
         has vbox
 
-        textbutton _("New Game") action Start()
+        textbutton _("New Game") action Start("EEout_start")
         textbutton _("Add New Event") action Start("EE_start")
+        textbutton _("Test Event") action Start("EE_test")
         textbutton _("Load Game") action ShowMenu("load")
         textbutton _("Preferences") action ShowMenu("preferences")
         textbutton _("Help") action Help()
@@ -33,4 +34,3 @@ init -2:
     # Make all the main menu buttons be the same size.
     style mm_button:
         size_group "mm"
-
