@@ -131,7 +131,7 @@ screen comments_screen:
 
 
 label EE_start:
-    devloper "This is an Event Editor, have fun!"
+    developer "This is an Event Editor, have fun!"
 
     call screen new_tutorial_menu
 
@@ -143,9 +143,20 @@ label EE_start:
 #
 
 label new_project:
-    $ project_name = "EEout_" + renpy.input("Write a name for the event","test")
-    if project_name == "EEout_":
-        devloper "You must write a name for the event"
+    $ modname = ""
+    menu:
+        "New Project For:"
+
+        "Main Game Plot":
+            pass
+
+        "Mod":
+            $modname = renpy.input("Write a name of mod","mod")
+            $_modn = modname + "_"
+
+    $ project_name = "EEout_" + _modn + renpy.input("Write a name for the event","test")
+    if project_name == "EEout_" + _modn:
+        developer "You must write a name for the event"
         jump new_project
     elif project_kind == "map":
         jump EE_map
@@ -168,8 +179,6 @@ label new_project:
         $ position_temp_char2= 0
         jump event_editor
     return
-
-
 
 
 label insert_pos_manually:
@@ -196,13 +205,14 @@ label delete_comment:
 
 label change_project_name:
     $ project_name=renpy.input("Write a name for the event",default=project_name)
-    if project_name=="":
+    if project_name=="EEout_":
         "You must write a name for the event"
         jump change_project_name
     return
 
 #
-#This code is looped every time you change page while editing. It is needed to save all the variable modified and to update them for the new page.
+#This code is looped every time you change page while editing.
+#It is needed to save all the variable modified and to update them for the new page.
 #
 
 label event_editor:
@@ -270,27 +280,46 @@ label event_editor:
 
     jump event_editor_repeat
 
-#
-#
-#The code that runs to export the event and create the output file. It should be created in the same folder as the .exe
-#
 
 label exporting_project:
+    if project_name in EE__label_list:
+        menu:
+            debug "Warning!\n
+                Event with name [project_name] is already existing.\n
+                if you don't change event name it will over write existing one.\n
+                Do you want to overwrite?"
+
+            "Change Event name":
+                jump change_project_name
+
+            "Overwrite":
+                pass
+
     python:
-        target = renpy.loader.transfn("events/")
+        expath = "events/"
+
+        if modname != "":
+            expath = "mods/" + modname + "/" + expath
+
+        target = renpy.loader.transfn(expath)
         target = open(target + project_name + ".rpy",'w+')
+
         ind=''
         n_ind=1
         ind=indentation(n_ind)
+
         target.write("label "+project_name+":\n")
+
         if project_kind=="map":
             export(minievent_list['beginning'],n_ind)
+
         else:
             export(minievent_list[project_name],n_ind)
+
         target.write("    return")
         target.close()
-    return
 
+    return
 
 
 init python:
@@ -304,12 +333,15 @@ init python:
                         target.write(ind+"hide "+minievent_temp.char_onscreen[xx-1][yy]+"\n")
                     else:
                         target.write(ind+"show "+minievent_temp.char_onscreen[xx][yy]+" at Position(xanchor=0.5,xpos=%f) \n" % minievent_temp.char_position[xx][yy])
-            if minievent_temp.speaker[xx]!='narrator':
+            if minievent_temp.speaker[xx]=='narrator':
+                target.write(ind+ "\""+minievent_temp.page_text[xx]+"\"\n")
+            else:
                 target.write(ind+minievent_temp.speaker[xx])
-            target.write(" \""+minievent_temp.page_text[xx]+"\"\n")
+                target.write(" \""+minievent_temp.page_text[xx]+"\"\n")
+
             if minievent_temp.comments[xx]!='':
                 target.write(ind+" # "+minievent_temp.comments[xx])
-            target.write("\n")    #not sure +ind
+            target.write("\n")
         return
 
 

@@ -22,6 +22,7 @@ screen main_menu():
         has vbox
 
         textbutton _("New Game") action Start("EEout_start")
+        textbutton _("Mods") action Start("mods_sec")
         textbutton _("Add New Event") action Start("EE_start")
         textbutton _("Test Event") action Start("EE_test")
         textbutton _("Load Game") action ShowMenu("load")

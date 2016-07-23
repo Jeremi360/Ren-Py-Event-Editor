@@ -162,7 +162,8 @@ screen BG_base_selection:
                 yalign 300
                 xalign 400
 
-                textbutton _("black") action SetVariable("BG_temp", "black") xminimum 150
+                for name in base_colors:
+                    textbutton _(name) action SetVariable("BG_temp", name)  xminimum 150
 
                 for name in tango:
                     textbutton _(name) action SetVariable("BG_temp", name)  xminimum 150

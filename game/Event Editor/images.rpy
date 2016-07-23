@@ -1,39 +1,35 @@
+init -300 python:
+    bgs = []
+    ev_bgs = []
+    characters = []
 
-init -100:
-    define bgs = []
-    define ev_bgs = []
-    define characters = []
-    image black = "#000"
+    exts = ['.png', '.jpg']
+    spaces = ['/', '_']
 
-    python:
+    def addImgs(src, prefix, li):
+        for file in renpy.list_files():
+            if file.startswith(src):
+                if file.endswith(tuple(exts)):
+                    name = file.replace(src, prefix)
 
-        exts = ['.png', '.jpg']
-        spaces = ['/', '_']
+                    for space in spaces:
+                        name = name.replace(space, ' ')
 
-        def addImgs(src, prefix, li):
-            for file in renpy.list_files():
-                if file.startswith(src):
-                    if file.endswith(tuple(exts)):
-                        name = file.replace(src, prefix)
+                    for ext in exts:
+                        name = name.replace(ext,'')
 
-                        for space in spaces:
-                            name = name.replace(space, ' ')
+                    renpy.image(name, Image(file))
+                    li.append(name)
 
-                        for ext in exts:
-                            name = name.replace(ext,'')
+    def addBGs(src, prefix = 'bg'):
+        addImgs(src, prefix, bgs)
 
-                        renpy.image(name, Image(file))
-                        li.append(name)
+    def addEVs(src, prefix = 'event'):
+        addImgs(src, prefix, ev_bgs)
 
-        def addBGs(src, prefix = 'bg'):
-            addImgs(src, prefix, bgs)
+    def addChs(src, prefix = ''):
+        addImgs(src, prefix, characters)
 
-        def addEVs(src, prefix = 'event'):
-            addImgs(src, prefix, ev_bgs)
-
-        def addChs(src, prefix = ''):
-            addImgs(src, prefix, characters)
-
-        addBGs('images/bgs')
-        addEVs('images/events')
-        addChs('images/characters')
+    addBGs('images/bgs')
+    addEVs('images/events')
+    addChs('images/characters')

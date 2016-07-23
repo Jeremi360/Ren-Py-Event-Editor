@@ -1,10 +1,12 @@
+init -80 python:
+    EE__label_list = renpy.get_all_labels()
+
+
 label EE_test:
     scene bg start code
 
-    devloper "Here you can test yours events.\n
+    developer "Here you can test yours events.\n
     If you don't see your event on list just restart game."
-
-    $ EE__label_list = renpy.get_all_labels()
 
     label EE_watch_event_list_repeat:
         call screen EE_label_list
@@ -13,7 +15,9 @@ label EE_test:
 
     return
 
+
 screen EE_label_list:
+
     vbox:
         xalign 0.5
         yalign 0.5

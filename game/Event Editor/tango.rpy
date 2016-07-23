@@ -1,4 +1,4 @@
-init -100 python:
+init -300 python:
 
     tango_base = {"Butter":("#fce94f", "#edd400", "#c4a000"),
 
