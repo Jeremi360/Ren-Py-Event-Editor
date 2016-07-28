@@ -14,13 +14,20 @@ label mods_sec:
     return
 
 screen mods_selection:
-    vbox:
-        box_wrap True
-        yalign 0.5
-        xalign 0.5
+    side "c b r":
+        area (100, 100, 600, 400)
+        viewport id "vp":
+            draggable True
+            mousewheel True
 
-        for mod in mods.items():
-            $n = mod[0]
-            $mod_start = mod[1]
+            vbox:
+                box_wrap True
+                yalign 0.5
+                xalign 0.5
 
-            textbutton _(n) action Return(mod_start) xminimum 200
+                for mod in mods.items():
+                    $n = mod[0]
+                    $mod_start = mod[1]
+                    textbutton _(n) action Return(mod_start) xminimum 200
+                    
+            vbar value YScrollValue("vp")

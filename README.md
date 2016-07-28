@@ -5,24 +5,29 @@ Ren'Py Event Editor forked from this: [Ren'Py Event Editor forum topic](http://l
 ## Features:
 - Support for mods / custom scenarios - see files in *mods/test*
 - You can test your events from menu
-- All generated events have *EEout_* prefix
+- All generated events have *EEout_* prefix:
+  - Events from main plot have *EEout_main_* prefix
+  - Events from mods have *EEout_mod_name_* prefix
 
 - Genterate buttons for all spekers added to speakers list:
 
   ```
-  $ speakers.append(mycharacter)
+  $ speakers["my_character_name_in_code"] = my_character_name_in_code
   ```
 
 - Easy add custom images folders:
 
   ```
   init -30 python:
-    addBGs('my_custom_bgs', 'my_bg_prefix') #you don't have to write prefix
-    addEVs('my_custom_ev', 'my_ev_prefix')
+    addBGs('my_custom_bgs', 'my_bg_prefix') #default prefix is 'bg'
+    addEVs('my_custom_ev', 'my_ev_prefix') #default prefix is 'event'
     addChs('my_custom_ch')
     ```
 
 ## Changes:
+- Start develop support for [DSE(Dating Sim Engine)](https://github.com/renpy/dse)
+- Add *EE_config.rpy* to show default Event Editor configuration
+- Change way of adding new speakers to fix bug
 - Add test mod
 - Fix indentation on speakers lines again
 - Add Support for mods

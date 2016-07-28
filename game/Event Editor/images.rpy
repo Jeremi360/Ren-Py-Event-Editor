@@ -29,7 +29,3 @@ init -300 python:
 
     def addChs(src, prefix = ''):
         addImgs(src, prefix, characters)
-
-    addBGs('images/bgs')
-    addEVs('images/events')
-    addChs('images/characters')

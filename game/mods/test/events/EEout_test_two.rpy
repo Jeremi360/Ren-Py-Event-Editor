@@ -12,7 +12,7 @@ label EEout_test_two:
             show  sylvie surprised at Position(xanchor=0.5,xpos=0.500000)
             sylvie "Do you realy want to know?"
 
-            "You" "Yes."
+            you "Yes."
 
             sylvie "Okey, go with me."
 
@@ -45,7 +45,7 @@ label EEout_test_two:
             show  sylvie giggle at Position(xanchor=0.5,xpos=0.500000)
             sylvie "Do you want do to some visual novel with me?"
 
-            "You" "Yes."
+            you "Yes."
 
             sylvie "Ok, but it depends from wath vns are for you."
 
@@ -53,7 +53,7 @@ label EEout_test_two:
                 "Internet and vn are for ...":
                     scene test bg uni
                     show  sylvie surprised at Position(xanchor=0.5,xpos=0.500000)
-                    "You" "... Hentai."
+                    you "... Hentai."
 
                     show  sylvie surprised at Position(xanchor=0.5,xpos=1.000000)
                     sylvie "What?!"
@@ -81,13 +81,13 @@ label EEout_test_two:
                     show  sylvie green smile at Position(xanchor=0.5,xpos=0.500000)
                     "Finally she cameback."
 
-                    "You" "Why you change your dress?"
+                    you "Why you change your dress?"
 
                     sylvie "What?"
 
                     developer "I just borow this sprites for 'The Question' that came with Ren'Py. "
 
-                    "You" "Nevermind. What is this notebook for?"
+                    you "Nevermind. What is this notebook for?"
 
                     sylvie "I write here some ideas for vns."
 

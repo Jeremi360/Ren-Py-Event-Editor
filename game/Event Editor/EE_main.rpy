@@ -1,4 +1,4 @@
-﻿#######VERSION: 2.4
+﻿#######VERSION: 2.6
 #
 #DON'T TOUCH:
 #Code needed to capture the input text everytime the page changes.
@@ -148,7 +148,7 @@ label new_project:
         "New Project For:"
 
         "Main Game Plot":
-            pass
+            $_modn = "main_"
 
         "Mod":
             $modname = renpy.input("Write a name of mod","mod")
@@ -298,11 +298,31 @@ label exporting_project:
     python:
         expath = "events/"
 
+
         if modname != "":
             expath = "mods/" + modname + "/" + expath
 
         target = renpy.loader.transfn(expath)
         target = open(target + project_name + ".rpy",'w+')
+
+
+        if EE__DSEmodule_active:
+            target.write("init:\n    ")
+            target.write("$ event('"+project_name+"'")
+
+            if EE__DSE_once == 1:
+                target.write(",event.once()")
+
+            if EE__DSE_group != 0:
+                target.write(",event.choose_one(\""+EE__DSE_group+"\")")
+
+                target.write(",'act == \""+EE__DSE_group+"\"'")
+
+            for ii in EE__conditions_used_list:
+                target.write(",'"+ii.condition_property.variable_name+ii.operator+ii.variable_value+"'")
+
+            target.write(")")
+            target.write("\n\n\n")
 
         ind=''
         n_ind=1
@@ -323,6 +343,7 @@ label exporting_project:
 
 
 init python:
+
     def export_scene(minievent_temp,ind):
         for xx in range(1,minievent_temp.totalpages+1):
             if minievent_temp.BG[xx-1]!=minievent_temp.BG[xx]:

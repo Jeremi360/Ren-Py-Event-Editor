@@ -26,14 +26,21 @@ screen speaker_selection:
 
                 textbutton _("None") action SetVariable('speaker_temp',"") xminimum 200
 
-                for speaker in speakers:
-                    $n = speaker.name
-                    $call_speaker = n.lower().split()[0]
+                for s in speakers.items():
+
+                    if s[1].name == None:
+                        $n = s[0].title()
+
+                    else:
+                        $n = s[1].name
+
+                    $call_speaker = s[0]
 
                     textbutton _(n) action SetVariable('speaker_temp', call_speaker) xminimum 200
 
                 textbutton _("WRITE NEW") action ui.callsinnewcontext('insert_speaker_manually') xminimum 200
     textbutton _("DONE") yalign 0.3 xalign 1.0 action Hide('speaker_selection') xminimum 200
+
 
 screen BG_selection:
     zorder 1
@@ -52,20 +59,24 @@ screen BG_selection:
     textbutton _("DONE") yalign 0.3 xalign 1.0 action Hide('BG_selection') xminimum 200
     vbar value YScrollValue("bg_sel")
 
+
 screen character_selection:
     zorder 1
     tag sc
 
     textbutton _("DONE") yalign 0.5 xalign 0.95 action Hide('character_selection') xminimum 150
+
     vbox:
         yalign 0.15
         xfill True
+
         hbox:
             xfill True
             textbutton ("Char 1") action SetVariable('char_nu_temp',0) xminimum 150
             textbutton ("Char 2") action SetVariable('char_nu_temp',1) xminimum 150
             textbutton ("Char 3") action SetVariable('char_nu_temp',2) xminimum 150
         null height 10
+
         showif char_nu_temp == 0:
             hbox:
                 xfill True
@@ -81,6 +92,7 @@ screen character_selection:
                 textbutton ("0.9") action SetVariable('position_temp_char0',0.9)
                 textbutton ("right") action SetVariable('position_temp_char0',1.0)
             bar value VariableValue('position_temp_char0',1.6,offset=-0.3)
+
         elif char_nu_temp == 1:
             hbox:
                 xfill True
@@ -96,6 +108,7 @@ screen character_selection:
                 textbutton ("0.9") action SetVariable('position_temp_char1',0.9)
                 textbutton ("right") action SetVariable('position_temp_char1',1.0)
             bar value VariableValue('position_temp_char1',1.6,offset=-0.3)
+
         elif char_nu_temp == 2:
             hbox:
                 xfill True
@@ -150,6 +163,7 @@ screen EV_bg_selection:
 
     textbutton _("DONE") yalign 0.3 xalign 1.0 action Hide('EV_bg_selection')
     vbar value YScrollValue("ev_bg_sel")
+
 
 screen BG_base_selection:
     zorder 1
