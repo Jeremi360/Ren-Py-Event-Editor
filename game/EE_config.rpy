@@ -1,4 +1,4 @@
-init -200 python:
+init -100 python:
     # here you can config Event Editor to your game
     # default images config
     addBGs('images/bgs')

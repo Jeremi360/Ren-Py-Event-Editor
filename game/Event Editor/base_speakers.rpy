@@ -1,4 +1,4 @@
-init -300 python:
+init -200 python:
 
     fs = Character(None, kind=nvl)
     centered = Character(None, kind=nvl, what_xalign=0.5, what_yalign=0.5)
