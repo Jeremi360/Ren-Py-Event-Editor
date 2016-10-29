@@ -1,4 +1,4 @@
-﻿#######VERSION: 2.6
+﻿#######VERSION: 2.6.2
 #
 #DON'T TOUCH:
 #Code needed to capture the input text everytime the page changes.
@@ -63,16 +63,16 @@ screen event_window:
         hbox:
             textbutton _("Speaker") action Show('speaker_selection') xminimum 120
             textbutton _("Base BG") action Show('BG_base_selection')  xminimum 120
-            textbutton _("BG") action Show('BG_selection') xminimum 120
-            textbutton _("EV") action Show ('EV_bg_selection') xminimum 120
-            textbutton _("Characters") action Show ('character_selection') xminimum 120
-            textbutton _("Comments") action ShowMenu ('comments_screen') xminimum 120
+            textbutton _("BG") action Show('BG_selection') xminimum 50
+            textbutton _("Events BG") action Show ('EV_bg_selection') xminimum 150
+            textbutton _("Characters") action Show ('character_selection') xminimum 150
+            textbutton _("Comments") action ShowMenu ('comments_screen') xminimum 150
         hbox:
             text _("page [page]/[minievent_temp.totalpages]") min_width 120  text_align 0.5
             textbutton _("<-1<") action If(page>1,[GetText("event_window","input"),SetVariable("pagechange",-1)]) xminimum 80
             textbutton _(">+1>") action [GetText("event_window","input"),SetVariable("pagechange",1),If(page==minievent_temp.totalpages,SetVariable('sel_act',"addpage2"))] xminimum 80
-            textbutton _("<-10<") action If(page-10>0,[GetText("event_window","input"),SetVariable("pagechange",-10)]) xmaximum 80
-            textbutton _(">+10>") action If(page+10<=minievent_temp.totalpages,[GetText("event_window","input"),SetVariable("pagechange",10)]) xmaximum 80
+            textbutton _("<-10<") action If(page-10>0,[GetText("event_window","input"),SetVariable("pagechange",-10)]) xmaximum 100
+            textbutton _(">+10>") action If(page+10<=minievent_temp.totalpages,[GetText("event_window","input"),SetVariable("pagechange",10)]) xmaximum 100
             textbutton _("AddPage") action [GetText("event_window","input"),SetVariable('sel_act',"addpage1")] xminimum 120
             textbutton _("RemovePage") action [GetText("event_window","input"),SetVariable('sel_act',"removepage")] xminimum 120
 
@@ -305,7 +305,7 @@ label exporting_project:
         target = renpy.loader.transfn(expath)
         target = open(target + project_name + ".rpy",'w+')
 
-
+        ##DSE Support
         if EE__DSEmodule_active:
             target.write("init:\n    ")
             target.write("$ event('"+project_name+"'")
@@ -373,7 +373,7 @@ init python:
             if minievent_temp.branch!=False:
                 export(minievent_list[minievent_temp.branch[0]],n_ind)
         elif minievent_temp.type=='branch':
-            target.write(ind+'menu:\n')
+            target.write(ind+'menu ' + minievent_list[minievent_temp.branch[0]].name +':\n')
             n_ind+=2
             for ii in range(len(minievent_temp.branch)):
                 target.write('    '+ind+'"'+minievent_temp.branching_text[ii]+'":\n')
@@ -389,20 +389,3 @@ init python:
         for ii in range(n_ind):
             ind+='    '
         return ind
-
-
-label EE_tutorial:
-    scene bg start code
-    'In the Event Editor each "page" correspond to "one click" in game.'
-    'VERY IMPORTANT: The editor does not notice that you have modified a page until you "change page". So when you are going to EXPORT or SAVE the event, you should change page before doing so, this way you can be sure that your modifications are remembered.'
-    'TEXT' 'When you start the Event Editor you will have the possibility to write the text that you want to show in this window you are reading now. You can input the text in this very same window. It can be both dialogue or narration text. There are just a a couple thing you have to remember.'
-    'TEXT' 'You cannot write on a newline in the Event Editor. To do that you have to write "\\ n" (without the space in the middle) : when the event is shown in game, the text after "\\ n" will be shown on a new line. \nAlso remember that there is no need of space after the n: "Hi. \\ nHow are you?". No space between "\\ n" and "How".'
-    'SPEAKER' 'Select this button in the top-left part of the screen to choose wich name will be shown as the "speaker" of dialogue line. Select "none" if you are going to write a narration text.\nAnd there is also a "WRITE NEW" option to let you use a name that is not in the premade list.'
-    'CHARACTER' 'Select this to show some character on the screen. You can manage a max of three character on the screen at the same time. They will be "char1", "char2" and "char3". Use the bar or the numbered buttons to decide the character\'s horizontal position. You can also press the button under the bar, on the left, to input the position yourself (it must be a number between 0 and 1)'
-    'CHARACTER' 'Under the position bar you will see some buttons with names on them. Choose wich character you want to display on the screen. On the right there will be other buttons with numbers: each number corrispond to a different face expression, body position or dress for the selected character.'
-    'BACKGROUND' 'Select the BG button and you will have the list of background options.'
-    'COMMENTS' 'This open a new screen. In this screen you can add a comment for the page you were working on (you can also delete it). The comment will also be present in the EXPORTED code, after a \# so that anyone can see that comment when working on the code.\nAlso from this screen you can see all the comments of the current event.Use this option to remind yourself something or to give some info to anyone that will work on the exported code.'
-    'MENU' 'This button is in the top-right part of the screen. In this menu there are other option to modify your event.'
-    'EXPORT EVENT' 'Very easy to use. Just push the button. Then, in the same folder as the .exe, you will find a file named <project_name>.rpy. \nThat is the code for your event.'
-    'SAVE&LOAD' 'If you want to save your work, you can do so with the normal SAVE system. Just press "ESC", you will enter the game main menu and here you can save as if you were simply playing the game. To LOAD and contiue modifing your event just use the LOAD option.'
-    return

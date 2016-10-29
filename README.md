@@ -1,4 +1,5 @@
 # Ren'Py Event Editor
+![](game/gui/window_icon.png)
 
 Ren'Py Event Editor forked from this: [Ren'Py Event Editor forum topic](http://lemmasoft.renai.us/forums/viewtopic.php?f=51&t=24108#p374045)
 
@@ -25,6 +26,9 @@ Ren'Py Event Editor forked from this: [Ren'Py Event Editor forum topic](http://l
     ```
 
 ## Changes:
+- Now tutorial have screen shots
+- Some fixes in gui
+- Move gui to new renpy gui
 - Start develop support for [DSE(Dating Sim Engine)](https://github.com/renpy/dse)
 - Add *EE_config.rpy* to show default Event Editor configuration
 - Change way of adding new speakers to fix bug

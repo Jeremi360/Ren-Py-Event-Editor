@@ -3,6 +3,10 @@ init -200 python:
     fs = Character(None, kind=nvl)
     centered = Character(None, kind=nvl, what_xalign=0.5, what_yalign=0.5)
 
+    def center(name):
+        c = Character(name, kind=nvl, xalign=0.5, yalign=0.5)
+        return c
+
     speakers = {
                 #"fs":fs,
                 #"centered":centered

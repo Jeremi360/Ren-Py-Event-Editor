@@ -15,11 +15,11 @@ screen speaker_selection:
     zorder 1
     tag sc
     side "c r":
-        area (5,0,490,455)
+        area (5, 100, 1260, 400)
         viewport id "bg_sel":
             draggable True mousewheel True
             vbox:
-                ymaximum 400
+                ymaximum 600
                 box_wrap True
                 yalign 0.3
                 xalign 0.5
@@ -46,7 +46,7 @@ screen BG_selection:
     zorder 1
     tag sc
     side "c r":
-        area (5,0,490,455)
+        area (5, 100, 1260, 400)
         viewport id "bg_sel":
             draggable True mousewheel True
             vbox:
@@ -128,7 +128,7 @@ screen character_selection:
 
 
     side "c r":
-        area (5,0,490,455)
+        area (5, 250, 1260, 300)
         viewport id "char_sel":
             draggable True mousewheel True
 
@@ -149,7 +149,7 @@ screen EV_bg_selection:
     tag sc
     zorder 1
     side "c r":
-        area (5,0,490,455)
+        area (5, 100, 1260, 400)
         viewport id "ev_bg_sel":
             draggable True mousewheel True
 
@@ -169,7 +169,7 @@ screen BG_base_selection:
     zorder 1
     tag sc
     side "c r":
-        area (5,0,490,455)
+        area (5, 100, 1260, 400)
         viewport id "bg_base_sel":
             draggable True mousewheel True
             vbox:
