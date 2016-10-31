@@ -4,6 +4,8 @@
 Ren'Py Event Editor forked from this: [Ren'Py Event Editor forum topic](http://lemmasoft.renai.us/forums/viewtopic.php?f=51&t=24108#p374045)
 
 ## Features:
+- Support to use as mod in any game(just ajust EE_config.rpy in Event Editor folder)
+- Support for [DSE(Dating Sim Engine)](https://github.com/renpy/dse)
 - Support for mods / custom scenarios - see files in *mods/test*
 - You can test your events from menu
 - All generated events have *EEout_* prefix:
@@ -28,8 +30,8 @@ Ren'Py Event Editor forked from this: [Ren'Py Event Editor forum topic](http://l
 ## Changes:
 - Now tutorial have screen shots
 - Some fixes in gui
-- Move gui to new renpy gui
-- Start develop support for [DSE(Dating Sim Engine)](https://github.com/renpy/dse)
+- Move gui to new renpy gui (Ren'Py v.6.99.11.1749)
+- Finished develop support for [DSE(Dating Sim Engine)](https://github.com/renpy/dse)
 - Add *EE_config.rpy* to show default Event Editor configuration
 - Change way of adding new speakers to fix bug
 - Add test mod

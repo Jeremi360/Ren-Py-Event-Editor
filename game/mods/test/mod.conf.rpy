@@ -1,7 +1,7 @@
 # this is example config mod to develop with Ren'Py Event Editor
-init -200 python:
-    sylv = Character("Sylvie", color = "#e65fc8")
-    speakers["sylv"] = sylv
+init -20 python:
+    sylvie = Character("Sylvie", color = "#e65fc8")
+    speakers["sylv"] = sylvie
 
     you =  Character("You")
     speakers["you"] = you

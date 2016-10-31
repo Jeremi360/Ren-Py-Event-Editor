@@ -26,7 +26,7 @@ label EEout_test_two:
 
             "You reach handle."
 
-            scene tango Red
+            scene Red
             "But suddenlly you fell pain in you head."
 
             scene Black

@@ -59,6 +59,9 @@ screen event_window:
     else:
         textbutton _("Event Menu") action [GetText("event_window","input"),ShowMenu("project_main_menu")] xalign 1.0
 
+    if EE__DSEmodule_active:
+        textbutton _('DSE manager') action [GetText("event_window","input"),ShowMenu('EE__DSEmodule')] xalign 1.0 yalign 0.05 xsize 200
+
     vbox:
         hbox:
             textbutton _("Speaker") action Show('speaker_selection') xminimum 120
@@ -144,15 +147,22 @@ label EE_start:
 
 label new_project:
     $ modname = ""
-    menu:
-        "New Project For:"
+    if EE_edit_main_plot:
+        menu:
+            "New Project For:"
 
-        "Main Game Plot":
-            $_modn = "main_"
+            "Main Game Plot":
+                $_modn = "main_"
 
-        "Mod":
-            $modname = renpy.input("Write a name of mod","mod")
-            $_modn = modname + "_"
+            "Mod":
+                $modname = renpy.input("Write a name of mod","mod")
+                $_modn = modname + "_"
+
+    else:
+        "New Project For Mod"
+        $modname = renpy.input("Write a name of mod","mod")
+        $_modn = modname + "_"
+
 
     $ project_name = "EEout_" + _modn + renpy.input("Write a name for the event","test")
     if project_name == "EEout_" + _modn:
